@@ -18,3 +18,11 @@ elsif language =='assembly'
 else
   puts "Не переживай, скоро будет Ruby "
 end
+
+# Просим пользователя ввести команду Ruby
+puts "Введите команду Ruby:"
+ruby_command = gets.chomp
+eval(ruby_command)
+# Просим пользователя ввести команду ОС
+puts "Введите команду ОС:"
+puts system(gets.chomp) ? "Выполнено" : "Такой команды не существует"
