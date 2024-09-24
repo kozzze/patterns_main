@@ -17,3 +17,19 @@ end
 puts "Введите число для метода 1: "
 numb = $stdin.gets.chomp.to_i
 puts "Сумма непростых делитей равна #{sum_of_non_prime_divisors(numb)}"
+
+#Метод для нахождения количества цифр меньших 3
+
+def count_digits_less_than_3(number)
+  # Преобразуем число в строку и затем в массив символов
+  digits = number.to_s.chars
+
+  # Подсчитываем количество цифр, меньших 3
+  digits.count { |digit| digit.to_i < 3 }
+end
+
+puts "Введите число для метода 2: "
+numb2 = $stdin.gets.chomp.to_i # Преобразуем введенное значение в целое число
+
+count = count_digits_less_than_3(numb2)
+puts "Количество цифр, меньших 3: #{count}"
