@@ -18,4 +18,17 @@ class Student
   def to_s
     "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
   end
+  #Метод для вывода на экран сведений о студенте
+  def display_info
+    puts "Сведения о студенте:"
+    puts "ID: #{@id}"
+    puts "Фамилия: #{@lastname}"
+    puts "Имя: #{@firstname}"
+    puts "Отчество : #{@surname}"
+    puts "Телеграм: #{@telegram}"
+    puts "Почта: #{@email}"
+    puts "GitHub: #{@github}"
+    puts "\n"
+
+  end
 end
