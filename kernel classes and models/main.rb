@@ -11,12 +11,12 @@ rescue ArgumentError => e
 end
 
 begin
-  student3 = Student.new(id:3, lastname: 'Рука',firstname: 'Александр', surname: 'Савельевич')
+  student3 = Student.new(id:3, lastname: 'Рука',firstname: 'Александр', surname: 'Савельевич',telegram: '@tyrew',github: 'https://github.com/tyrew')
 rescue ArgumentError => e
   puts e.message
   end
 begin
-  student4 = Student.new(id: 4, lastname: "Петров", firstname: "Петр", surname: "Петрович", phone: "+89476326547")
+  student4 = Student.new(id: 4, lastname: "Петров", firstname: "Петр", surname: "Петрович", phone: "+89476326547",github: 'https://github.com/gghfdfa')
 rescue ArgumentError => e
   puts e.message # Ожидаем сообщение о некорректном номере телефона
 end

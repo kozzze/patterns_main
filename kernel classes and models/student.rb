@@ -2,8 +2,8 @@
 class Student
   #Геттеры обязательные поля
   attr_reader :id, :lastname, :firstname, :surname
-  #Сеттеры не обязательные поля
-  attr_accessor :phone, :telegram, :email, :github
+  #Геттеры для контактов
+  attr_reader :phone, :telegram, :email, :github
 
   def initialize(id:, lastname:, firstname:, surname:, phone:nil, telegram:nil, email:nil, github:nil)
     @id=id
@@ -13,22 +13,11 @@ class Student
     raise ArgumentError, "Фамилия введена неверно:  #{@lastname}" unless self.class.name_valid?(@lastname)
     raise ArgumentError, "Имя введена неверно:  #{@firstname}" unless self.class.name_valid?(@firstname)
     raise ArgumentError, "Отчетво введена неверно:  #{@surname}" unless self.class.name_valid?(@surname)
-    if phone && !self.class.phone_valid?(phone)
-      raise ArgumentError, "Номер введен неверно: #{phone}"
-    end
-    @phone=phone
-    @telegram=telegram
-    @email=email
-    @github=github
-    if telegram && !self.class.tg_valid?(telegram)
-      raise ArgumentError, "Телеграм введен неверно: #{telegram}"
-    end
-    if email && !self.class.mail_valid?(email)
-      raise ArgumentError, "Email введен неверно: #{email}"
-    end
+    @github = github
     if github && !self.class.valid_github?(github)
       raise ArgumentError, "GitHub введен неверно: #{github}"
     end
+    set_contacts(phone: phone, telegram: telegram, email: email)
     validate
   end
 
@@ -81,7 +70,23 @@ class Student
     !@github.nil? && !github.empty?
   end
 
+  # Метод для установки значений полей контактов
+  def set_contacts(phone: nil, telegram: nil, email: nil)
+    if phone && !self.class.phone_valid?(phone)
+      raise ArgumentError, "Номер введен неверно: #{phone}"
+    end
+    if telegram && !self.class.tg_valid?(telegram)
+      raise ArgumentError, "Телеграм введен неверно: #{telegram}"
+    end
+    if email && !self.class.mail_valid?(email)
+      raise ArgumentError, "Email введен неверно: #{email}"
+    end
 
+    # Устанавливаем значения контактов
+    @phone = phone if phone
+    @telegram = telegram if telegram
+    @email = email if email
+  end
 
   # Метод для вывода на экран сведений о студенте
   def display_info
