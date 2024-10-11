@@ -25,9 +25,10 @@ class Student
     puts "Фамилия: #{@lastname}"
     puts "Имя: #{@firstname}"
     puts "Отчество : #{@surname}"
-    puts "Телеграм: #{@telegram}"
-    puts "Почта: #{@email}"
-    puts "GitHub: #{@github}"
+    puts "Телефон : #{@phone}" if @phone
+    puts "Телеграм: #{@telegram}" if @telegram
+    puts "Почта: #{@email}" if @email
+    puts "GitHub: #{@github}" if @github
     puts "\n"
 
   end
