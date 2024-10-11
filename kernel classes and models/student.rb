@@ -29,15 +29,20 @@ class Student
     if github && !self.class.valid_github?(github)
       raise ArgumentError, "GitHub введен неверно: #{github}"
     end
+    validate
   end
+
+
   def to_s
     "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
   end
+
   #Метод для валидации телефона
   def self.phone_valid?(phone)
     return false if phone.nil? || phone.empty?
     phone =~ /^\+?\d{10,15}$/
   end
+
   # Валидация имени
   def self.name_valid?(name)
     name && name=~/^[A-Za-zА-Яа-яЁё\s-]+$/
@@ -56,6 +61,24 @@ class Student
   # Валидация телеграмма
   def self.tg_valid?(tg)
     tg && tg =~ /^@[A-Za-z0-9_]{1,32}$/
+  end
+
+  # Метод для проверки существования контакта и гита
+  def validate
+    unless contact_present?
+      raise ArgumentError, "Надо указать хотя бы один контакт. "
+    end
+    unless github_present?
+      raise ArgumentError, "Надо указать GitHub"
+    end
+  end
+
+  # Методы для проверки наличия контактов и гита
+  def contact_present?
+    !@phone.nil? || !@telegram.nil? || !@email.nil?
+  end
+  def github_present?
+    !@github.nil? && !github.empty?
   end
 
 
