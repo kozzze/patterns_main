@@ -10,6 +10,9 @@ class Student
     @lastname=lastname
     @firstname=firstname
     @surname=surname
+    raise ArgumentError, "Фамилия введена неверно:  #{@lastname}" unless self.class.name_valid?(@lastname)
+    raise ArgumentError, "Имя введена неверно:  #{@firstname}" unless self.class.name_valid?(@firstname)
+    raise ArgumentError, "Отчетво введена неверно:  #{@surname}" unless self.class.name_valid?(@surname)
     if phone && !self.class.phone_valid?(phone)
       raise ArgumentError, "Номер введен неверно: #{phone}"
     end
@@ -17,6 +20,15 @@ class Student
     @telegram=telegram
     @email=email
     @github=github
+    if telegram && !self.class.tg_valid?(telegram)
+      raise ArgumentError, "Телеграм введен неверно: #{telegram}"
+    end
+    if email && !self.class.mail_valid?(email)
+      raise ArgumentError, "Email введен неверно: #{email}"
+    end
+    if github && !self.class.valid_github?(github)
+      raise ArgumentError, "GitHub введен неверно: #{github}"
+    end
   end
   def to_s
     "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
@@ -26,8 +38,29 @@ class Student
     return false if phone.nil? || phone.empty?
     phone =~ /^\+?\d{10,15}$/
   end
+  # Валидация имени
+  def self.name_valid?(name)
+    name && name=~/^[A-Za-zА-Яа-яЁё\s-]+$/
+  end
 
-  #Метод для вывода на экран сведений о студенте
+  # Валидация GitHub
+  def self.valid_github?(github)
+    github && github=~/^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9._-]+$/
+  end
+
+  # Валидация почты
+  def self.mail_valid?(mail)
+    mail && mail =~ /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  end
+
+  # Валидация телеграмма
+  def self.tg_valid?(tg)
+    tg && tg =~ /^@[A-Za-z0-9_]{1,32}$/
+  end
+
+
+
+  # Метод для вывода на экран сведений о студенте
   def display_info
     puts "Сведения о студенте:"
     puts "ID: #{@id}"

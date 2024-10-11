@@ -1,11 +1,11 @@
 require_relative 'student'
 begin
-  student1=Student.new(id:1, lastname: 'Голова',firstname: 'Максим', surname: 'Иванович',phone: '+71936486347',telegram: '@golova',email: 'golova@example.com',github: 'golova-git')
+  student1=Student.new(id:1, lastname: 'Голова',firstname: 'Максим', surname: 'Иванович',phone: '+71936486347',telegram: '@golova',email: 'golova@example.com',github: 'https://github.com/golova')
 rescue ArgumentError => e
   puts e.message
 end
 begin
-  student2 = Student.new(id:2, lastname: 'Нога', surname: 'Максимович',firstname: 'Иван',phone: '89174657428',telegram: '@noga',email: 'noga@example.com',github: 'noga-git')
+  student2 = Student.new(id:2, lastname: 'Нога', surname: 'Максимович',firstname: 'Иван',phone: '89174657428',telegram: '@noga',email: 'noga@example.com',github: 'https://github.com/noga')
 rescue ArgumentError => e
   puts e.message
 end
