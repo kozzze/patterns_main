@@ -5,5 +5,5 @@ student2 = Student.new(id:2, lastname: 'Нога', surname: 'Максимови�
 puts student1.validate
 puts student2.validate
 
+puts student1.get_info
 puts student1.display_info
-puts student2.display_info

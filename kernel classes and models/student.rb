@@ -45,7 +45,7 @@ class Student
       raise ArgumentError, "Отчество введено неверно: #{@surname}"
     end
   end
-  
+
   def to_s
     "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
   end
@@ -125,5 +125,15 @@ class Student
     str.push( "Почта: #{@email}") if @email
     str.push( "GitHub: #{@github}") if @github
     str.join(" ")
+  end
+
+  def get_info
+    info=[]
+    info.push("ФИО: #{@lastname} #{firstname[0]}.#{@surname[0]}.")
+    info.push("Git: #{@github}") if github
+    info.push ("Номер: #{@phone}") if phone
+    info.push ("Telegram: #{@telegram}") if telegram
+    info.push ("Email: #{@email}") if email
+    info.join(" ; ")
   end
 end
