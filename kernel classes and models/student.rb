@@ -1,9 +1,10 @@
+
+
 #Создаем класс Student
 class Student
 
-  attr_accessor :lastname, :firstname, :surname, :github
- 
-  attr_reader :id,:phone, :telegram, :email
+  #Геттер
+  attr_reader :id,:phone, :telegram, :email,:lastname, :firstname, :surname, :github
 
   def initialize(id:nil, lastname:, firstname:, surname:, phone:nil, telegram:nil, email:nil, github:nil)
     @id=id
@@ -78,12 +79,7 @@ class Student
 
   # Метод для проверки существования контакта и гита
   def validate
-    unless contact_present?
-      raise ArgumentError, "Надо указать хотя бы один контакт. "
-    end
-    unless github_present?
-      raise ArgumentError, "Надо указать GitHub"
-    end
+    github_present? && contact_present?
   end
 
   # Методы для проверки наличия контактов и гита
@@ -91,7 +87,7 @@ class Student
     !@phone.nil? || !@telegram.nil? || !@email.nil?
   end
   def github_present?
-    !@github.nil? && !github.empty?
+    !@github.nil? && !@github.empty?
   end
 
   # Метод для установки значений полей контактов

@@ -1,10 +1,10 @@
 require_relative 'student'
 
-student1=Student.new(id:1, lastname: 'Голова',firstname: 'Максим', surname: 'Иванович',telegram: '@golova',email: 'golova@example.com',github:'https://github.com/noga')
+student1=Student.new(id:1, lastname: 'Голова',firstname: 'Максим', surname: 'Иванович',telegram: '@golova',email: 'golova@example.com')
 student2 = Student.new(id:2, lastname: 'Нога', surname: 'Максимович',firstname: 'Иван',phone: '89174657428',telegram: '@noga',email: 'noga@example.com',github: 'https://github.com/noga')
-puts student1.validate
-puts student2.validate
+
 student_short1=Student_short.new(student1)
+puts student1.validate
 
 puts student_short1.to_s
 
