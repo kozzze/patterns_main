@@ -109,20 +109,6 @@ class Student
     end
   end
 
-  # Метод для вывода на экран сведений о студенте
-  def display_info
-    str=[]
-    str.push( "ID: #{@id}")
-    str.push( "Фамилия: #{@lastname}")
-    str.push( "Имя: #{@firstname}")
-    str.push( "Отчество : #{@surname}")
-    str.push( "Телефон : #{@phone}") if @phone
-    str.push( "Телеграм: #{@telegram}") if @telegram
-    str.push( "Почта: #{@email}") if @email
-    str.push( "GitHub: #{@github}") if @github
-    str.join(" ")
-  end
-
   def get_info
     info=[]
     info.push("ФИО: #{@lastname} #{firstname[0]}.#{@surname[0]}.")
@@ -132,46 +118,4 @@ class Student
     info.push ("Email: #{@email}") if email
     info.join(" ; ")
   end
-end
-class Student_short 
-  attr_reader :id, :initials, :github, :contact
-  
-  def initialize(*args)
-    if args[0].is_a?(Student)
-      student = args[0]
-      @id = student.id
-      @initials = "#{student.lastname} #{student.firstname[0]}. #{student.surname[0]}."
-      @github = student.github
-      @contact = format_contact(student)
-    elsif args.length == 2 
-      @id = args[0]
-      parts = args[1].split(';')
-      @initials = parts[0].strip
-      @github = parts[1]&.strip 
-      @contact = parts[2..-1].map(&:strip).join('; ') if parts[2]
-    else
-      raise ArgumentError, "Неправильное количество аргументов"
-    end
-  end
-
-  private
-  
-  def format_contact(student)
-    contact_info = []
-    contact_info << "Телефон: #{student.phone}" if student.phone
-    contact_info << "Telegram: #{student.telegram}" if student.telegram
-    contact_info << "Email: #{student.email}" if student.email
-    contact_info.join(' ; ')
-  end
-
-  public
-
-  def to_s
-    "ID: #{@id}, ФИО: #{@initials}, GitHub: #{@github}, Контакты: #{@contact}"
-  end
-
-
-
-
-
 end
