@@ -17,5 +17,4 @@ student = Student.new(
 
 student_short = Student_short.from_student(student)
 
-# Вывод информации о Student_short
 puts student_short.to_s

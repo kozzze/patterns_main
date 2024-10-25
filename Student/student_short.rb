@@ -10,11 +10,6 @@ class Student_short < Person
     @contact = contact
   end
 
-
-  def github=(github)
-    @github = github
-  end
-
   def self.from_student(student)
 		new(student.initials, id: student.id, github: student.github, contact: student.contact)
 	end

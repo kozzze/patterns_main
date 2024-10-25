@@ -67,7 +67,7 @@ class Student < Person
   end
 
   # Метод для проверки существования контакта и гита
-  def validate
+  def validate?
     github_present? && contact_present?
   end
 
