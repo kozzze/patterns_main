@@ -1,11 +1,21 @@
+require_relative 'person'
 require_relative 'student'
 require_relative 'student_short'
 
-student1 = Student.new(id: 1, lastname: 'Голова', firstname: 'Максим', surname: 'Иванович', telegram: '@golova', email: 'golova@example.com')
 
-student = Student.new(id: 2, lastname: "Иванов", firstname: "Иван", surname: "Максимович", phone: "+71234567890", telegram: "@ivanov", email: "ivanov@example.com")
+student = Student.new(
+    id: 1,
+    lastname: "Иванов",
+    firstname: "Иван",
+    surname: "Иванович",
+    phone: "+79161234567",
+    telegram: "@ivanov",
+    email: "ivanov@example.com",
+    github: "https://github.com/ivanov"
+)
 
-student_short = Student_short.new(student)
 
-puts student_short
-puts student1
+student_short = Student_short.from_student(student)
+
+# Вывод информации о Student_short
+puts student_short.to_s

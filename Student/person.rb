@@ -1,12 +1,10 @@
 class Person
 
-  attr_reader :id, :lastname, :firstname, :surname
+  attr_reader :id, :github
   
-  def initialize(id: nil,lastname:,firstname:,surname:)
-    self.id = id
-    self.firstname = firstname
-    self.lastname = lastname
-    self.surname = surname
+  def initialize(id: nil,github: nil)
+    self.id = id if id
+    self.github = github if github
   end
 
   #Сеттеры
@@ -14,41 +12,19 @@ class Person
     @id = id
   end
 
-  def lastname=(lastname)
-    if self.class.name_valid?(lastname)
-      @lastname = lastname
+  def github=(github)
+    if self.class.valid_github?(github)
+      @github = github
     else
-      raise ArgumentError, "Фамилия введена неверно: #{lastname}"
+      raise ArgumentError, "GitHub введен неверно: #{github}"
     end
-  end
+  end 
 
-  def firstname=(firstname)
-    if self.class.name_valid?(firstname)
-      @firstname = firstname
-    else
-      raise ArgumentError, "Имя введено неверно: #{firstname}"
-    end
-  end
 
-  def surname=(surname)
-    if self.class.name_valid?(surname)
-      @surname = surname
-    else
-      raise ArgumentError, "Отчество введено неверно: #{surname}"
-    end
-  end
-
-  #Валижация для имени
-  def self.name_valid?(name)
-    name && name =~ /^[A-Za-zА-Яа-яЁё\s-]+$/
-  end
-  def initials
-    "#{@lastname} #{@firstname[0]}. #{@surname[0]}."
-  end
-
-  def full_name
-    "#{@lastname} #{@firstname} #{@surname}"
-  end
+  #Валижация для git
+  def self.valid_github?(github)
+    github=~/^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9._-]+$/
+ end
    
 
 

@@ -4,23 +4,41 @@ require_relative 'person'
 class Student < Person
 
   #Геттер
-  attr_reader :phone, :telegram, :email, :github
+  attr_reader :phone, :telegram, :email, :firstname, :lastname, :surname
 
   def initialize(id:nil, lastname:, firstname:, surname:, phone:nil, telegram:nil, email:nil, github:nil)
     #Конструктор суперкласса
-    super(id: id, lastname: lastname, firstname: firstname, surname: surname)
-    self.github = github if github
+    super(id: id, github: github)
+    
+    self.firstname = firstname
+    self.lastname = lastname
+    self.surname = surname
     set_contacts(phone: phone, telegram: telegram, email: email)
   end
 
-
-  def github=(github)
-    if self.class.valid_github?(github)
-      @github = github
+  def firstname=(firstname)
+    if self.class.name_valid?(firstname)
+      @firstname = firstname
     else
-      raise ArgumentError, "GitHub введен неверно: #{github}"
+      raise ArgumentError, "Имя введено неверно: #{firstname}"
     end
   end 
+  def lastname=(lastname)
+    if self.class.name_valid?(lastname)
+      @lastname = lastname
+    else
+      raise ArgumentError, "Фамилия введена неверно: #{lastname}"
+    end
+  end 
+  def surname=(surname)
+    if self.class.name_valid?(surname)
+      @surname = surname
+    else
+      raise ArgumentError, "Отчество введено неверно: #{surname}"
+    end
+  end 
+
+  
 
 
   def to_s
@@ -36,11 +54,6 @@ class Student < Person
   # Валидация имени
   def self.name_valid?(name)
     name && name=~/^[A-Za-zА-Яа-яЁё\s-]+$/
-  end
-
-  # Валидация GitHub
-  def self.valid_github?(github)
-     github=~/^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9._-]+$/
   end
 
   # Валидация почты
@@ -85,6 +98,17 @@ class Student < Person
     end
   end
 
+  def contact
+    contact_info = []
+    contact_info << "Телефон: #{phone}" if phone
+    contact_info << "Telegram: #{telegram}" if telegram
+    contact_info << "Email: #{email}" if email
+    contact_info.join(' ; ')
+  end
+
+  def initials
+    "#{lastname} #{firstname[0]}. #{surname[0]}."
+end
   def get_info
     info=[]
     info.push("ФИО: #{@lastname} #{firstname[0]}.#{@surname[0]}.")

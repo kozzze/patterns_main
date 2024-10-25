@@ -1,13 +1,13 @@
-require_relative 'student'
+require_relative 'person'
 class Student_short < Person
 
-  attr_reader :github, :contact
+  attr_reader :initials, :contact
   
-  def initialize(student)
+  def initialize(initials, id: nil, github: nil, contact: nil)
     #Конструктор суперкласса
-    super(id: student.id, lastname: student.lastname, firstname: student.firstname, surname: student.surname)
-    @github = student.github
-    @contact = format_contact(student)
+    super(id: id, github: github)
+    @initials = initials
+    @contact = contact
   end
 
 
@@ -15,17 +15,19 @@ class Student_short < Person
     @github = github
   end
 
-  def contact=(contact)
-    @contact = contact
-  end
+  def self.from_student(student)
+		new(student.initials, id: student.id, github: student.github, contact: student.contact)
+	end
 
-  def format_contact(student)
-    contact_info = []
-    contact_info << "Телефон: #{student.phone}" if student.phone
-    contact_info << "Telegram: #{student.telegram}" if student.telegram
-    contact_info << "Email: #{student.email}" if student.email
-    contact_info.join(' ; ')
-  end
+	def self.from_string(id, info_string)
+		info = info_string.split(", ")
+    initials = info[0]
+		github = info[1] 
+		contact = info[2]
+		new(student.initials, id: id, github: github, contact: contact)
+	end
+
+  
 
   def to_s
     "ID: #{id}, ФИО: #{initials}, GitHub: #{@github}, Контакты: #{@contact}"
