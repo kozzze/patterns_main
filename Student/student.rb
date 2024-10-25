@@ -1,19 +1,18 @@
-
+require_relative 'person'
 
 #Создаем класс Student
-class Student
+class Student < Person
 
   #Геттер
-  attr_reader :id,:phone, :telegram, :email,:lastname, :firstname, :surname, :github
+  attr_reader :phone, :telegram, :email, :github
 
   def initialize(id:nil, lastname:, firstname:, surname:, phone:nil, telegram:nil, email:nil, github:nil)
-    @id=id
-    self.lastname=lastname
-    self.firstname=firstname
-    self.surname=surname
+    #Конструктор суперкласса
+    super(id: id, lastname: lastname, firstname: firstname, surname: surname)
     self.github = github if github
     set_contacts(phone: phone, telegram: telegram, email: email)
   end
+
 
   def github=(github)
     if self.class.valid_github?(github)
@@ -23,29 +22,6 @@ class Student
     end
   end 
 
-  def lastname=(lastname)
-    if self.class.name_valid?(lastname)
-      @lastname = lastname
-    else
-      raise ArgumentError, "Фамилия введена неверно: #{lastname}"
-    end
-  end
-
-  def firstname=(firstname)
-    if self.class.name_valid?(firstname)
-      @firstname = firstname
-    else
-      raise ArgumentError, "Имя введено неверно: #{firstname}"
-    end
-  end
-
-  def surname=(surname)
-    if self.class.name_valid?(surname)
-      @surname = surname
-    else
-      raise ArgumentError, "Отчество введено неверно: #{@surname}"
-    end
-  end
 
   def to_s
     "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
