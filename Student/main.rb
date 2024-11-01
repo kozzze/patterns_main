@@ -8,12 +8,10 @@ student = Student.new(
     lastname: "Иванов",
     firstname: "Иван",
     surname: "Иванович",
-    phone: "+79161234567",
-    telegram: "@ivanov",
-    email: "ivanov@example.com",
-    github: "https://github.com/ivanov"
+    phone: "+79184328574",
+    email: "ivanov@mail.ur",
+    github: "https://github.com/kozzze"
 )
-
 
 student_short = Student_short.from_student(student)
 
