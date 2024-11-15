@@ -21,5 +21,8 @@ def el_less_am(arr)
   am =  arr.sum.to_f / arr.length
   arr.select {|n| n < am} 
 end  
-arr=[1,2,3,4,5,6,7,8,9,10]
-puts el_less_am(arr)
+# Найти элементы встречающиеся более 3 раз
+def el_more_three(arr)
+  arr.select{|el| arr.count(el)>3}.uniq
+end
+
