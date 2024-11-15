@@ -15,6 +15,11 @@ def local_max?(arr,ind)
   false
 end 
 
-arr=[1,3,3,3,4,1,5]
-n=3
-puts local_max?(arr,n)
+# Найти все элементы, которые меньше среднего арифметического элементов массива
+def el_less_am(arr)
+  return "Массив пуст" if arr.empty? 
+  am =  arr.sum.to_f / arr.length
+  arr.select {|n| n < am} 
+end  
+arr=[1,2,3,4,5,6,7,8,9,10]
+puts el_less_am(arr)
