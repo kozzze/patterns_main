@@ -63,5 +63,21 @@ class ArrayProcessing
     end
     max_el
   end
+
+  # drop_while method
+  def drop_while
+    result = []
+    skip = true
+    array.each do |element|
+      if skip && yield(element)
+        next
+      else 
+        skip = false
+        result << element
+      end
+    end
+    result
+  end
+
 end
 
