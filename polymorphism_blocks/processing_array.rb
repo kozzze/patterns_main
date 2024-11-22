@@ -53,6 +53,15 @@ class ArrayProcessing
     end
     sort_arr
   end
-end
 
+  # max method
+  def max
+    max_el = array[0]
+    array.each do |element|
+      comp = block_given? ? yield(max_el,element) : (max_el <=> element)
+      max_el = element if comp == -1
+    end
+    max_el
+  end
+end
 
