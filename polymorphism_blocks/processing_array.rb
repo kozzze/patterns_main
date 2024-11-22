@@ -34,4 +34,13 @@ class ArrayProcessing
     res
   end
 
+  # select mathod
+  def select
+    res = []
+    array.each do |element|
+      res << element if yield(element)
+    end
+    res
+  end
 end
+
