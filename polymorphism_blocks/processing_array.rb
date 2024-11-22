@@ -25,5 +25,13 @@ class ArrayProcessing
     nil
   end
 
+  # Метод map
+  def map
+    res = []
+    array.each do |element|
+      res << yield(element)
+    end
+    res
+  end
 
 end
