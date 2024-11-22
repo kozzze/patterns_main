@@ -42,5 +42,17 @@ class ArrayProcessing
     end
     res
   end
+
+  # sort method
+  def sort
+    sort_arr = array.dup
+    if block_given? 
+      sort_arr.sort! {|a,b| yield(a,b)}
+    else
+      sort_arr.sort!
+    end
+    sort_arr
+  end
 end
+
 
