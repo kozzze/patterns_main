@@ -1,8 +1,10 @@
-require 'date'
+
 require_relative 'person'
 
 #Создаем класс Student
 class Student < Person
+
+  include Comparable
 
   #Геттер
   attr_reader :phone, :telegram, :email, :firstname, :lastname, :surname, :birth_date
@@ -58,7 +60,7 @@ class Student < Person
   end 
     
   def valid_birth?(date)
-    Date.parse(date) rescue false
+    date.match?(/^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|1[0-2])\-(19|20)\d{2}$/)
   end
   
 
@@ -107,5 +109,11 @@ end
     info.push ("Telegram: #{@telegram}") if telegram
     info.push ("Email: #{@email}") if email
     info.join(" ; ")
+  end
+  
+  def <=>(other)
+    day1, month1, year1 = @birth_date.split('-').map(&:to_i)
+    day2, month2, year2 = other.birth_date.split('-').map(&:to_i)
+    [year1, month1, day1] <=> [year2, month2, day2]
   end
 end
