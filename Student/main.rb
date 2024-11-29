@@ -8,11 +8,11 @@ student = Student.new(
     lastname: "Иванов",
     firstname: "Иван",
     surname: "Иванович",
+    birth_date: "2003-04-04",
     phone: "+79184328574",
     email: "ivanov@mail.ur",
     github: "https://github.com/kozzze"
 )
 
-student_short = Student_short.from_student(student)
 
-puts student_short.to_s
+puts student

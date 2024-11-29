@@ -1,20 +1,31 @@
+require 'date'
 require_relative 'person'
 
 #Создаем класс Student
 class Student < Person
 
   #Геттер
-  attr_reader :phone, :telegram, :email, :firstname, :lastname, :surname
+  attr_reader :phone, :telegram, :email, :firstname, :lastname, :surname, :birth_date
 
-  def initialize(lastname:, firstname:, surname:,id:nil, phone:nil, telegram:nil, email:nil, github:nil)
+  def initialize(lastname:, firstname:, surname:,id:nil, birth_date:nil, phone:nil, telegram:nil, email:nil, github:nil)
     #Конструктор суперкласса
     super(id: id, github: github)
     
     self.firstname = firstname
     self.lastname = lastname
     self.surname = surname
+    self.birth_date = birth_date
     set_contacts(phone: phone, telegram: telegram, email: email)
+    
   end
+
+  def birth_date=(birth_date)
+    if birth_date.nil? || valid_birth?(birth_date)
+      @birth_date = birth_date
+    else
+      raise ArgumentError, "Дата неверна:#{birth_date}"
+    end
+  end 
 
   def firstname=(firstname)
     if Student.name_valid?(firstname)
@@ -37,6 +48,7 @@ class Student < Person
       raise ArgumentError, "Отчество введено неверно: #{surname}"
     end
   end 
+
   def github=(github)
     if Student.valid_github?(github)
       @github = github
@@ -44,11 +56,15 @@ class Student < Person
       raise ArgumentError, "GitHub введен неверно: #{github}"
     end
   end 
+    
+  def valid_birth?(date)
+    Date.parse(date) rescue false
+  end
   
 
 
   def to_s
-    "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
+    "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Дата рождения: #{@birth_date}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
   end
 
   
