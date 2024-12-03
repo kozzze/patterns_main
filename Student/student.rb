@@ -1,4 +1,4 @@
-
+require 'date'
 require_relative 'person'
 
 #Создаем класс Student
@@ -22,12 +22,12 @@ class Student < Person
   end
 
   def birth_date=(birth_date)
-    if birth_date.nil? || valid_birth?(birth_date)
-      @birth_date = birth_date
+    if Student.valid_birth?(birth_date)
+      @birth_date = Date.strptime(birth_date, '%d-%m-%Y') # Преобразуем строку в объект Date
     else
-      raise ArgumentError, "Дата неверна:#{birth_date}"
+      raise ArgumentError, "Дата рождения введена неверно: #{birth_date}"
     end
-  end 
+  end
 
   def firstname=(firstname)
     if Student.name_valid?(firstname)
@@ -59,8 +59,13 @@ class Student < Person
     end
   end 
     
-  def valid_birth?(date)
-    date.match?(/^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|1[0-2])\-(19|20)\d{2}$/)
+  def self.valid_birth?(date)
+    begin
+      Date.strptime(date, '%d-%m-%Y') 
+      true
+    rescue ArgumentError
+      false
+    end
   end
   
 
@@ -111,9 +116,5 @@ end
     info.join(" ; ")
   end
   
-  def <=>(other)
-    day1, month1, year1 = @birth_date.split('-').map(&:to_i)
-    day2, month2, year2 = other.birth_date.split('-').map(&:to_i)
-    [year1, month1, day1] <=> [year2, month2, day2]
-  end
+  
 end

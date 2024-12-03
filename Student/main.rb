@@ -10,14 +10,4 @@ students = [
   Student.new(lastname: "Алексеев", firstname: "Алексей", surname: "Алексеевич", birth_date: "01-05-2003")
 ]
 
-# Создаем дерево
-tree = BinaryTree.new
-
-# Добавляем студентов в дерево
-students.each { |student| tree.insert(student) }
-
 puts students
-
-# Обход дерева (даты рождения должны быть в порядке возрастания)
-puts "Студенты, отсортированные по дате рождения:"
-tree.each { |student| puts student.obj }
