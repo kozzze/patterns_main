@@ -17,7 +17,6 @@ end
 
 # Найти все элементы, которые меньше среднего арифметического элементов массива
 def el_less_am(arr)
-  return "Массив пуст" if arr.empty? 
   am =  arr.sum.to_f / arr.length
   arr.select {|n| n < am} 
 end  
