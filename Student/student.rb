@@ -74,7 +74,10 @@ class Student < Person
     "ID: #{@id}, ФИО: #{@lastname} #{@firstname} #{@surname}, Дата рождения: #{@birth_date}, Номер телефона: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, GitHub: #{@github}"
   end
 
-  
+  def <=>(other)
+    return nil unless other.is_a?(Student)
+    birth_date <=> other.birth_date
+  end
 
   # Метод для установки значений полей контактов
   def set_contacts(phone: nil, telegram: nil, email: nil)

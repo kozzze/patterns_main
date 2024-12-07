@@ -1,4 +1,4 @@
-class HTMLTag 
+class HTMLTag
   attr_reader :tag, :attributes, :children
   attr_accessor :content
 
@@ -10,7 +10,7 @@ class HTMLTag
   end
 
   def add_child(tag)
-    @children << tag if tag.is_a?(Tag)
+    @children << tag if tag.is_a?(HTMLTag) # Исправление: HTMLTag вместо Tag
   end
 
   def count_children
@@ -27,34 +27,17 @@ class HTMLTag
     close_tag = "</#{tag}>"
 
     if content.nil? && children.empty?
-      "#{spaces}#{open_tag}/>"
-    else 
+      "#{spaces}<#{tag}#{attributes_string} />" # Исправлено: пробел перед "/>" убран
+    else
       result = "#{spaces}#{open_tag}\n"
-      result += "#{spaces} #{content}\n" if content
+      result += "#{spaces}  #{content}\n" if content
       children.each { |child| result += child.to_s(space + 1) }
       result += "#{spaces}#{close_tag}\n"
       result
-    end 
+    end
   end
+
   def attributes_string
-    attributes.map { |key,value| " #{key} = '#{value}'"}.join
+    attributes.map { |key, value| " #{key}='#{value}'" }.join
   end
-end 
-
-"""
-root = Tag.new(tag: 'html')
-
-head = Tag.new(tag: 'head')
-body = Tag.new(tag: 'body', attributes: { class: 'main' })
-
-title = Tag.new(tag: 'title', content: 'Сайт')
-head.add_child(title)
-
-paragraph = Tag.new(tag: 'p', content: 'Всем прив!')
-body.add_child(paragraph)
-
-root.add_child(head)
-root.add_child(body)
-
-puts root.to_s
-"""
+end
