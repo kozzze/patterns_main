@@ -30,7 +30,7 @@ class Tree
   def dfs
     return if @root.nil?
     stack = [@root]
-    while stack.any? # Исправлено: "stack" вместо "queue"
+    while stack.any?
       current_node = stack.pop
       yield(current_node)
       current_node.children.reverse.each { |child| stack.push(child) }
@@ -63,7 +63,7 @@ class Tree
     divided_tags.each do |divided_tag|
       if divided_tag.start_with?('<') && !divided_tag.start_with?('</')
         tag_name, attributes = parse_tag(divided_tag)
-        tag = HTMLTag.new(tag: tag_name, attributes: attributes) # Исправлено: tag_name вместо tag
+        tag = HTMLTag.new(tag: tag_name, attributes: attributes)
 
         if stack.any?
           stack.last.add_child(tag)
