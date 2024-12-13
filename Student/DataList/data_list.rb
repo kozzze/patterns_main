@@ -1,28 +1,45 @@
 class DataList
   def initialize(elements)
     self.data = elements
+    @selected = []
+  end
+
+  def select(number)
+    element = @data[number]
+    if element && !@selected.include?(element.id)
+      @selected << element.id
+    end
+  end
+
+  def get_selected
+    @selected.dup
+  end
+
+  def get_names
+    raise NotImplementedError, "Метод не реализован в классе DataList"
+  end
+
+  def get_data
+    raise NotImplementedError, "Метод не реализован в классе DataList"
   end
 
   private
 
   attr_reader :data
+  attr_accessor :selected
 
   def data=(data)
-    validate_elements(data)
-    @data = deep_dup(data)
+    raise ArgumentError, "Данные должны быть массивом" unless data.is_a?(Array)
+    @data = data.map { |element| deep_dup(element) }
   end
 
   def deep_dup(element)
+    return nil if element.nil?
+
     if element.is_a?(Array)
       element.map { |sub_element| deep_dup(sub_element) }
     else
       element.dup rescue element
     end
   end
-
-    def validate_elements(elements)
-      unless elements.is_a?(Array)
-        raise ArgumentError, "Элементы должны быть Array"
-      end
-    end    
-  end
+end
