@@ -18,4 +18,4 @@ tree.insert(student4)
 
 tree.each {|student| puts student.to_s}
 
-
+puts student1>student2
