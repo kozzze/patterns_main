@@ -10,9 +10,13 @@ class HTMLTag
   end
 
   def add_child(tag)
-    @children << tag if tag.is_a?(HTMLTag) # Исправление: HTMLTag вместо Tag
+    @children << tag if tag.is_a?(HTMLTag) 
   end
 
+  def name
+    @tag
+  end
+  
   def count_children
     children.size
   end
@@ -27,7 +31,7 @@ class HTMLTag
     close_tag = "</#{tag}>"
 
     if content.nil? && children.empty?
-      "#{spaces}<#{tag}#{attributes_string} />" # Исправлено: пробел перед "/>" убран
+      "#{spaces}<#{tag}#{attributes_string} />"
     else
       result = "#{spaces}#{open_tag}\n"
       result += "#{spaces}  #{content}\n" if content

@@ -59,27 +59,27 @@ class Tree
   def build_tree(divided_tags)
     stack = []
     root = nil
-
+  
     divided_tags.each do |divided_tag|
-      if divided_tag.start_with?('<') && !divided_tag.start_with?('</')
+      if divided_tag.start_with?('<') && !divided_tag.start_with?('</') 
         tag_name, attributes = parse_tag(divided_tag)
-        tag = HTMLTag.new(tag: tag_name, attributes: attributes) 
-
+        tag = HTMLTag.new(tag: tag_name, attributes: attributes)
+  
         if stack.any?
           stack.last.add_child(tag)
         else
           root = tag
         end
-
-        stack.push(tag) unless divided_tag.end_with?('/>')
-      elsif divided_tag.start_with?('</')
+  
+        stack.push(tag) unless divided_tag.end_with?('/>') 
+      elsif divided_tag.start_with?('</') 
         stack.pop
       else
-        next if divided_tag.strip.empty?
-        stack.last.content = divided_tag.strip if stack.any?
+        next if divided_tag.strip.empty? 
+        stack.last.content = divided_tag.strip if stack.any? && stack.last.content.nil?
       end
     end
-
+  
     root
   end
 
@@ -124,15 +124,11 @@ tree = Tree.new('<html>
 <title>My Website</title>
 </head>
 <body class="main">
-<p>Welcome to my website!</p>
+<p>Welcome!</p>
+<p>Another paragraph!</p>
 </body>
 </html>')
 
-puts "Tree:"
-puts tree.to_html
-
-puts "\nBFS:"
-tree.bfs { |node| puts node.to_s }
-
-puts "\nDFS:"
-tree.dfs { |node| puts node.to_s }
+res = tree.select { |tag| tag.name == 'p' }
+puts "Selected tags:"
+res.each { |tag| puts tag.to_s }

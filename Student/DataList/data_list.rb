@@ -1,6 +1,7 @@
 class DataList
-  def initialize(elements)
-    self.data = elements
+  def initialize(data, column_name = [])
+    self.data = data
+    @column_name = column_name
     @selected = []
   end
 
