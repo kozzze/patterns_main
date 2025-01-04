@@ -129,6 +129,6 @@ tree = Tree.new('<html>
 </body>
 </html>')
 
-res = tree.select { |tag| tag.name == 'p' }
-puts "Selected tags:"
-res.each { |tag| puts tag.to_s }
+
+res = tree.reduce(0) {|acc, node| acc + node.count_children}
+puts res

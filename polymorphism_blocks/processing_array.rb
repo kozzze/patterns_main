@@ -79,6 +79,3 @@ class ArrayProcessing
     result
   end
 end
-
-
-

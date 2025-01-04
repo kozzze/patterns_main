@@ -6,16 +6,11 @@ class DataListStudentShort < DataList
   end
 
   def get_data
-    index = 1
-    result = [self.get_names]
-    selected = self.get_selected
-    selected.each do |selected_index|
-      obj = @data[selected_index]
-      raise "Объект с индексом #{selected_index} отсутствует в данных" if obj.nil?
-      row = [index, obj.initials, obj.github, obj.contact]
-      result.append(row)
-      index += 1
+    result = []
+    @data.each_with_index do |obj, index|
+      row = [index + 1, obj.initials, obj.github, obj.contact]
+      result << row
     end
-    Data_table.new(result)
+    DataTable.new(result)
   end
 end

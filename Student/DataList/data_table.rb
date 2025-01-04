@@ -11,6 +11,10 @@ class DataTable
     @data.size
   end
 
+  def rows
+    @data
+  end
+
   def col_count
     @data.empty? ? 0 : @data[0].size
   end
