@@ -21,11 +21,13 @@ class Student < Person
     
   end
 
-  def birth_date=(birth_date)
-    if Student.valid_birth?(birth_date)
-      @birth_date = Date.strptime(birth_date, '%d-%m-%Y') # Преобразуем строку в объект Date
+  def birth_date=(value)
+    if value.nil? || value.strip.empty?
+      @birth_date = nil # Если дата не указана, оставляем nil
+    elsif Student.valid_birth?(value)
+      @birth_date = Date.strptime(value, '%Y-%m-%d') # Преобразование в объект Date
     else
-      raise ArgumentError, "Дата рождения введена неверно: #{birth_date}"
+      raise ArgumentError, "Дата рождения введена неверно: #{value}"
     end
   end
 
@@ -60,13 +62,16 @@ class Student < Person
   end 
     
   def self.valid_birth?(date)
+    return false if date.nil? || date.strip.empty?
+
     begin
-      Date.strptime(date, '%d-%m-%Y') 
+      Date.strptime(date, '%Y-%m-%d')
       true
     rescue ArgumentError
       false
     end
   end
+
   
 
 
@@ -108,7 +113,7 @@ class Student < Person
 
   def initials
     "#{lastname} #{firstname[0]}. #{surname[0]}."
-end
+  end
   def get_info
     info=[]
     info.push("ФИО: #{@lastname} #{firstname[0]}.#{@surname[0]}.")

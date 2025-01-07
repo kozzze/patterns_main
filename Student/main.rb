@@ -1,9 +1,9 @@
-require_relative 'person'
-require_relative 'student'
-require_relative 'student_short'
-require_relative 'student_tree'
-require_relative './DataList/data_list'
-require_relative './DataList/data_table'
+require_relative './model/person.rb'
+require_relative './model/student.rb'
+require_relative './model/student_short.rb'
+require_relative './binary_tree/student_tree.rb'
+require_relative './DataList/data_list.rb'
+require_relative './DataList/data_table.rb'
 require_relative './DataList/data_list_student_short.rb'
 
  #student3 = Student.new(lastname: "Сидоров", firstname: "Сидор", surname: "Сидорович", birth_date: "10-12-2002")

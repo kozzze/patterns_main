@@ -1,5 +1,5 @@
 require_relative 'node_tree'
-require_relative 'student'
+require_relative '../model/student'
 
 class BinaryTree
   include Enumerable

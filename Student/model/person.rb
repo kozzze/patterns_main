@@ -1,6 +1,6 @@
 class Person
-
-  attr_reader :id, :github
+  attr_accessor :id
+  attr_reader :github
   
   def initialize(id: nil,github: nil)
     @id = id if id
