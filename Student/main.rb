@@ -24,7 +24,7 @@ require_relative './DataList/data_list_student_short.rb'
 
 #puts student1>student2
 
-student1 = Student.new(id: 1, lastname: "Иванов", firstname: "Иван", surname: "Иванович", birth_date: "21-02-2003")
+student1 = Student.new(id: 1, lastname: "Иванов", firstname: "Иван", surname: "Иванович",github: "https://github.com/kozzze",email:"kozzz@mail.ru", birth_date: "21-02-2003")
 student2 = Student.new(id: 2, lastname: "Петров", firstname: "Петр", surname: "Петрович", birth_date: "15-02-2003")
 
 student_short1 = Student_short.from_student(student1)
@@ -40,5 +40,5 @@ puts "Данные таблицы:"
 table.rows.each { |row| puts row.join("\t") }
 
 # Проверка выбранных студентов
-list.select(0)
+list.select(4)
 puts "Выбранные студенты: #{list.get_selected}"

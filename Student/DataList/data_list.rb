@@ -1,7 +1,7 @@
 class DataList
     def initialize(data, column_name = [])
       self.data = data
-      @column_name = column_name
+      @column_name = column_name.freeze
       @selected = []
     end
   
@@ -17,27 +17,35 @@ class DataList
     end
   
     def get_names
-      raise NotImplementedError, "Метод не реализован в классе DataList"
+        column_names
     end
   
     def get_data
-        table_data = [["№", "initials", "git", "contact"]]
-        @data.each_with_index do |student, index|
-          table_data << [index + 1, student.initials, student.github, student.contact]
-        end
-        DataTable.new(table_data)
-      end
+        get_objects_array
+    end
   
-    private
+    protected
   
     attr_reader :data
     attr_accessor :selected
   
-    def data=(data)
-      raise ArgumentError, "Данные должны быть массивом" unless data.is_a?(Array)
-      @data = data.map { |element| deep_dup(element) }
+    def data=(new_data)
+      raise ArgumentError, "Данные должны быть массивом" unless new_data.is_a?(Array)
+      @data = new_data.map { |element| deep_dup(element) }
     end
-  
+    
+    def column_names=(names)
+    	raise ArgumentError, "Наименования столбцов не могут быть изменены" unless @column_names.nil?
+  	end
+
+    def column_names
+		raise NotImplementedError, "Метод не реализован в классе"
+	end
+
+    def get_objects_array
+		raise NotImplementedError, "Метод не реализован в классе"
+	end
+
     def deep_dup(element)
       return nil if element.nil?
   

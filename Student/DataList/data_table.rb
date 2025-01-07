@@ -23,7 +23,7 @@ class DataTable
     @data.inspect
   end
 
-  private
+  protected
 
   attr_reader :data
 
