@@ -31,9 +31,6 @@ student_short1 = Student_short.from_student(student1)
 student_short2 = Student_short.from_student(student2)
 list = DataListStudentShort.new([student_short1, student_short2])
 
-# Вывод заголовков
-puts "Заголовки таблицы: #{list.get_names}"
-
 # Вывод данных таблицы
 table = list.get_data
 puts "Данные таблицы:"

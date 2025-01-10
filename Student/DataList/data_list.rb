@@ -1,7 +1,6 @@
 class DataList
-    def initialize(data, column_name = [])
+    def initialize(data)
       self.data = data
-      @column_name = column_name.freeze
       @selected = []
     end
   
@@ -16,12 +15,9 @@ class DataList
       @selected.dup
     end
   
-    def get_names
-        column_names
-    end
-  
     def get_data
-        get_objects_array
+      data = get_objects_array
+      DataTable.new(data)
     end
   
     protected
@@ -33,18 +29,14 @@ class DataList
       raise ArgumentError, "Данные должны быть массивом" unless new_data.is_a?(Array)
       @data = new_data.map { |element| deep_dup(element) }
     end
-    
-    def column_names=(names)
-    	raise ArgumentError, "Наименования столбцов не могут быть изменены" unless @column_names.nil?
-  	end
-
-    def column_names
-		raise NotImplementedError, "Метод не реализован в классе"
-	end
 
     def get_objects_array
 		raise NotImplementedError, "Метод не реализован в классе"
-	end
+	  end
+
+  def get_names
+    raise NotImplementedError, "Метод не реализован в классе"
+  end
 
     def deep_dup(element)
       return nil if element.nil?
