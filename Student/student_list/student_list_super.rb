@@ -17,6 +17,7 @@ class StudentsList
   def change_strategy(new_file,new_strategy)
     @file_path = new_file
     @strategy = new_strategy
+    @students = @strategy.read_from_file(@file_path)
   end
   def get_student_by_id(id)
     @students.find { |student| student.id == id }
@@ -33,7 +34,7 @@ def get_k_n_student_short_list(k, n, existing_data_list = nil)
         DataListStudentShort.new(student_shorts)
     end
 end
-def sort_by_surname_fullname!
+def sort_by_initials!
     @students.sort_by! { |student| student.initials }
 end
 def add_student(student)

@@ -104,10 +104,15 @@ students_list_j = StudentsListJSON.new(file_path_json)
 puts "Список студентов JSON:"
 students_list_j.students.each { |student| puts student.to_s }
 '''
-
-
+''' #Lab4 STRATEGY
 file_json = "/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json"
 json_strategy = StudentsListJSON.new
+ # Используем JSON
 students_list = StudentsList.new(file_json, json_strategy)
-puts "📋 JSON: Загруженные студенты:"
+puts "JSON: Загруженные студенты:"
 puts students_list.students.each {|student|}
+
+'''
+
+
+
