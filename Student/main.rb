@@ -87,3 +87,15 @@ students_list.sort_by_surname_fullname!
 puts "\nПосле сортировки по фамилии и имени:"
 students_list.students.each { |student| puts student.to_s }
 '''
+file_path_json = '/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json'
+file_path_yaml = '/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/students.yaml'
+
+
+students_list_y = StudentsListYAML.new(file_path_yaml)
+puts "Список студентов YAML:"
+students_list_y.students.each { |student| puts student.to_s }
+
+
+students_list_j = StudentsListJSON.new(file_path_json)
+puts "Список студентов JSON:"
+students_list_j.students.each { |student| puts student.to_s }
