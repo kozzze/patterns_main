@@ -102,6 +102,19 @@ class Student < Person
       @email = email
     end
   end
+  
+  def to_h
+    {
+      id: @id,
+      lastname: @lastname,
+      firstname: @firstname,
+      surname: @surname,
+      email: @email,
+      phone: @phone,
+      telegram: @telegram,
+      github: @github
+    }
+  end
 
   def contact
     contact_info = []
