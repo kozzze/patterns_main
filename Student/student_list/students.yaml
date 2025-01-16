@@ -1,0 +1,18 @@
+---
+- :id: 1
+  :lastname: Иванов
+  :firstname: Иван
+  :surname: Иванович
+  :email: ivanov@mail.ru
+  :phone: 
+  :telegram: 
+  :github: 
+- :id: 3
+  :lastname: Сидоров
+  :firstname: Сидор
+  :surname: Сидорович
+  :email: sidorov@mail.ru
+  :phone: 
+  :telegram: 
+  :github: 
+

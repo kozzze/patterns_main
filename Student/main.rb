@@ -6,6 +6,7 @@ require_relative './DataList/data_list.rb'
 require_relative './DataList/data_table.rb'
 require_relative './DataList/data_list_student_short.rb'
 require_relative './student_list/student_list_json.rb'
+require_relative './student_list/student_list_yaml.rb'
 
  #student3 = Student.new(lastname: "Сидоров", firstname: "Сидор", surname: "Сидорович", birth_date: "10-12-2002")
  #student4 = Student.new(lastname: "Алексеев", firstname: "Алексей", surname: "Алексеевич", birth_date: "01-05-2003")
@@ -25,7 +26,7 @@ require_relative './student_list/student_list_json.rb'
 
 #puts student1>student2
 
-'''Lab4.1
+''' Lab4.1
 student1 = Student.new(id: 1, lastname: "Иванов", firstname: "Иван", surname: "Иванович",github: "https://github.com/kozzze",email:"kozzz@mail.ru", birth_date: "21-02-2003")
 student2 = Student.new(id: 2, lastname: "Петров", firstname: "Петр", surname: "Петрович", birth_date: "15-02-2003")
 
@@ -42,25 +43,47 @@ table.rows.each { |row| puts row.join("\t") }
 list.select(4)
 puts "Выбранные студенты: #{list.get_selected}"
 '''
-# Путь к JSON-файлу (проверьте, что он существует)
-file_path = '/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json'
 
-# Создаем объект списка студентов
+''' Lab4.2.JSON
+file_path = ''
 students_list = StudentsListJSON.new(file_path)
-
-# Выводим всех студентов
 puts "Список студентов:"
 students_list.students.each { |student| puts student.to_s }
-
-# Добавляем нового студента
 new_student = Student.new(
-  lastname: 'Сидоров',
-  firstname: 'Сидор',
-  surname: 'Сидорович',
-  email: 'sidorov@mail.ru'
+  lastname: Ааиский,
+  firstname: Антон,
+  surname: Антоновчик,
+  email: sidorov@mail.ru
 )
 students_list.add_student(new_student)
-
 puts "\nПосле добавления нового студента:"
 students_list.students.each { |student| puts student.to_s }
+puts "\nПосле сортировки:" 
+students_list.sort_by_surname_fullname!
+students_list.students.each { |student| puts student.to_s }
+'''
 
+'''Lab4.4.YAML
+file_path = /Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/students.yaml
+students_list = StudentsListYAML.new(file_path)
+puts "Список студентов:"
+students_list.students.each { |student| puts student.to_s }
+new_student = Student.new(
+  lastname: Сидоров,
+  firstname: Сидор,
+  surname: Сидорович,
+  email: sidorov@mail.r
+)
+students_list.add_student(new_student)
+puts "\nПосле добавления нового студента:"
+students_list.students.each { |student| puts student.to_s }
+student = students_list.get_student_by_id(1)
+puts "\nНайден студент с ID 1:"
+puts student.to_s if student
+students_list.delete_student_by_id(2)
+puts "\nПосле удаления студента с ID 2:"
+students_list.students.each { |student| puts student.to_s }
+students_list.sort_by_surname_fullname!
+puts "\nПосле сортировки по фамилии и имени:"
+students_list.students.each { |student| puts student.to_s }
+'''
