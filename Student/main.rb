@@ -7,6 +7,8 @@ require_relative './DataList/data_table.rb'
 require_relative './DataList/data_list_student_short.rb'
 require_relative './student_list/student_list_json.rb'
 require_relative './student_list/student_list_yaml.rb'
+require_relative './student_list/interface.rb'
+
 
  #student3 = Student.new(lastname: "Сидоров", firstname: "Сидор", surname: "Сидорович", birth_date: "10-12-2002")
  #student4 = Student.new(lastname: "Алексеев", firstname: "Алексей", surname: "Алексеевич", birth_date: "01-05-2003")
@@ -87,8 +89,10 @@ students_list.sort_by_surname_fullname!
 puts "\nПосле сортировки по фамилии и имени:"
 students_list.students.each { |student| puts student.to_s }
 '''
-file_path_json = '/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json'
-file_path_yaml = '/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/students.yaml'
+
+'''Lab4 SuperClass
+file_path_json = /Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json
+file_path_yaml = /Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/students.yaml
 
 
 students_list_y = StudentsListYAML.new(file_path_yaml)
@@ -99,3 +103,11 @@ students_list_y.students.each { |student| puts student.to_s }
 students_list_j = StudentsListJSON.new(file_path_json)
 puts "Список студентов JSON:"
 students_list_j.students.each { |student| puts student.to_s }
+'''
+
+
+file_json = "/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json"
+json_strategy = StudentsListJSON.new
+students_list = StudentsList.new(file_json, json_strategy)
+puts "📋 JSON: Загруженные студенты:"
+puts students_list.students.each {|student|}

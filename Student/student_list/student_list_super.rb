@@ -1,14 +1,26 @@
 class StudentsList
 
   attr_reader :students
-  def initialize(file_path)
-      @file_path = file_path
-      @students = read_from_file
+  def initialize(file_path, strategy_save)
+    @file_path = file_path
+    @strategy = strategy_save
+    @students = read_from_file
+
   end
 
+  def read_from_file
+      @strategy.read_from_file(@file_path)
+  end
+  def save_to_file
+      @strategy.save_to_file(@file_path)
+  end
+  def change_strategy(new_file,new_strategy)
+    @file_path = new_file
+    @strategy = new_strategy
+  end
   def get_student_by_id(id)
     @students.find { |student| student.id == id }
-end
+  end
 def get_k_n_student_short_list(k, n, existing_data_list = nil)
     start_index = (k - 1) * n
     slice = @students[start_index, n] || []
