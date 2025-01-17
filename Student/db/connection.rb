@@ -25,7 +25,3 @@ class Connection
   end
 end
 
-db = Connection.instance
-result = db.execute("select * from students;")
-result.each {|row|puts row}
-db.close
