@@ -104,7 +104,7 @@ students_list_j = StudentsListJSON.new(file_path_json)
 puts "Список студентов JSON:"
 students_list_j.students.each { |student| puts student.to_s }
 '''
-''' #Lab4 STRATEGY
+ #Lab4 STRATEGY
 file_json = "/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json"
 json_strategy = StudentsListJSON.new
  # Используем JSON
@@ -112,7 +112,20 @@ students_list = StudentsList.new(file_json, json_strategy)
 puts "JSON: Загруженные студенты:"
 puts students_list.students.each {|student|}
 
-'''
+new_student = Student.new(
+  lastname: 'Сивпароов',
+  firstname: 'олег',
+  surname: 'Сингович',
+  email: 'huyilov@mail.ru',
+  phone: '91837436475',
+  telegram: '@huyilac',
+  github: 'https://github.com/bigcodebingo'
+
+)
+students_list.add_student(new_student)
+
+puts "\nПосле добавления нового студента:"
+students_list.students.each { |student| puts student.to_s }
 
 
 

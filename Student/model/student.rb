@@ -84,6 +84,10 @@ class Student < Person
     birth_date <=> other.birth_date
   end
 
+  def == (student)
+    self.github == student.github || self.phone == student.phone || self.email == student.email || self.telegram == student.telegram
+  end
+
   # Метод для установки значений полей контактов
   def set_contacts(phone: nil, telegram: nil, email: nil)
     if phone &&!Student.phone_valid?(phone)

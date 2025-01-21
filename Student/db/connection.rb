@@ -25,3 +25,9 @@ class Connection
   end
 end
 
+
+require_relative 'connection'
+
+connection = Connection.instance
+puts connection.execute("SELECT * FROM students", []).to_a
+connection.close

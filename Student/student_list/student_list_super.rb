@@ -38,6 +38,9 @@ def sort_by_initials!
     @students.sort_by! { |student| student.initials }
 end
 def add_student(student)
+    if @students.include?(student)
+      raise ArgumentError, "#{student} уже существует"
+    end
     student_id_list = @students.map { |student| student.id }
     max_id = student_id_list.max || 0
     student.id = max_id + 1
@@ -45,7 +48,7 @@ def add_student(student)
 end
 def update_student_by_id(id, new_student)
     index = @students.find_index { |student| student.id == id }
-    raise IndexError, "wrong id" unless index
+    raise IndexError, "Неправильный id" unless index
     @students[index] = new_student
     new_student.id = id
 end
