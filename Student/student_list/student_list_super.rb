@@ -12,12 +12,12 @@ class StudentsList
       @strategy.read_from_file(@file_path)
   end
   def save_to_file
-      @strategy.save_to_file(@file_path)
+      @strategy.save_to_file(@file_path,@students)
   end
   def change_strategy(new_file,new_strategy)
     @file_path = new_file
     @strategy = new_strategy
-    @students = @strategy.read_from_file(@file_path)
+    #@students = @strategy.read_from_file(@file_path)
   end
   def get_student_by_id(id)
     @students.find { |student| student.id == id }
@@ -61,3 +61,4 @@ end
 
 
 end
+

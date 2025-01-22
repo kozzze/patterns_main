@@ -107,25 +107,33 @@ students_list_j.students.each { |student| puts student.to_s }
  #Lab4 STRATEGY
 file_json = "/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/student.json"
 json_strategy = StudentsListJSON.new
- # Используем JSON
-students_list = StudentsList.new(file_json, json_strategy)
-puts "JSON: Загруженные студенты:"
-puts students_list.students.each {|student|}
 
-new_student = Student.new(
-  lastname: 'Сивпароов',
-  firstname: 'олег',
-  surname: 'Сингович',
-  email: 'huyilov@mail.ru',
-  phone: '91837436475',
-  telegram: '@huyilac',
-  github: 'https://github.com/bigcodebingo'
+file2 = "/Users/kozzze/Desktop/Учеба/Паттерны_проектирования/labs/patterns_main/Student/student_list/students.yaml"
+y_strategy = StudentsListYAML.new
+
+
+new_student2 = Student.new(
+  lastname: 'Катя',
+  firstname: 'Крутой',
+  surname: 'Андрей',
+  email: 'fyutiriei@mail.ru',
+  phone: '87667778834',
+  telegram: '@qwqwetttgh',
+  github: 'https://github.com/ertrgghnTeroK'
 
 )
-students_list.add_student(new_student)
+ # Используем JSON
+students_list = StudentsList.new(file_json, json_strategy)
+students_list.add_student(new_student2)
+puts "JSON: Загруженные студенты:"
+students_list.students.each { |student| puts student }
+students_list.save_to_file
 
-puts "\nПосле добавления нового студента:"
-students_list.students.each { |student| puts student.to_s }
+students_list.change_strategy(file2, y_strategy)
+
+students_list.save_to_file
+puts "ямл: Загруженные студенты:"
+students_list.students.each { |student| puts student }
 
 
 

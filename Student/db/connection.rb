@@ -26,8 +26,11 @@ class Connection
 end
 
 
-require_relative 'connection'
 
-connection = Connection.instance
-puts connection.execute("SELECT * FROM students", []).to_a
-connection.close
+
+# connection = Connection.instance
+# puts connection.execute("SELECT * FROM students", []).to_a
+# connection.close
+db = Connection.instance
+db2 = Connection.instance
+puts db == db2

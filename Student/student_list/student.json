@@ -5,13 +5,38 @@
     "firstname": "Иван",
     "surname": "Иванович",
     "email": "ivanov@mail.ru",
-    "phone": "89183257463"
+    "phone": "89183257463",
+    "telegram": null,
+    "github": null
   },
   {
     "id": 2,
     "lastname": "Петров",
     "firstname": "Петр",
     "surname": "Петрович",
-    "email": "petrov@mail.ru"
+    "email": "petrov@mail.ru",
+    "phone": null,
+    "telegram": null,
+    "github": null
+  },
+  {
+    "id": 3,
+    "lastname": "Олег",
+    "firstname": "Крутой",
+    "surname": "Андрей",
+    "email": "fixiki@mail.ru",
+    "phone": "87667778866",
+    "telegram": "@qwerttgh",
+    "github": "https://github.com/ertghnTeroK"
+  },
+  {
+    "id": 4,
+    "lastname": "Катя",
+    "firstname": "Крутой",
+    "surname": "Андрей",
+    "email": "fyutiriei@mail.ru",
+    "phone": "87667778834",
+    "telegram": "@qwqwetttgh",
+    "github": "https://github.com/ertrgghnTeroK"
   }
 ]
