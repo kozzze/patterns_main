@@ -90,16 +90,18 @@ class Student < Person
 
   # Метод для установки значений полей контактов
   def set_contacts(phone: nil, telegram: nil, email: nil)
-    if phone &&!Student.phone_valid?(phone)
+    if phone && !Student.phone_valid?(phone)
       raise ArgumentError, "Номер введен неверно: #{phone}"
     else
       @phone = phone
     end
-    if telegram &&!Student.tg_valid?(telegram)
+
+    if telegram && !Student.tg_valid?(telegram)
       raise ArgumentError, "Телеграм введен неверно: #{telegram}"
     else
       @telegram = telegram
     end
+
     if email && !Student.mail_valid?(email)
       raise ArgumentError, "Email введен неверно: #{email}"
     else
