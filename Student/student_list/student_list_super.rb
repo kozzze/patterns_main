@@ -22,18 +22,16 @@ class StudentsList
   def get_student_by_id(id)
     @students.find { |student| student.id == id }
   end
-def get_k_n_student_short_list(k, n, existing_data_list = nil)
-    start_index = (k - 1) * n
-    slice = @students[start_index, n] || []
-    student_shorts = slice.map { |student| Student_short.from_student(student) }
-    
-    if existing_data_list
-        existing_data_list.replace(student_shorts)
-        existing_data_list
-    else
-        DataListStudentShort.new(student_shorts)
+  def get_k_n_student_short_list(k, n, data_list = nil)
+    if !k.is_a?(Integer) || !n.is_a?(Integer) || !k.positive? || !n.positive?
+      raise ArgumentError, "Числа должны быть целыми и положительными"
     end
-end
+    start = (k - 1) * n
+    selected = self.students[start, n] || []
+    students_short = selected.map { |student| StudentShort.from_student(student) }
+    data_list ||= DataListStudentShort.new(students_short, start)
+    data_list
+  end
 def sort_by_initials!
     @students.sort_by! { |student| student.initials }
 end

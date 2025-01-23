@@ -45,6 +45,14 @@ class StudentListDB
     count[0]['count'].to_i
   end
 
+  def read
+    data = @connection.execute("SELECT * FROM students")
+    data.map do |row|
+      row = row.transform_keys { |key| key.to_sym }
+      Student.new(**row)
+    end
+  end
+
 end
 
 

@@ -1,9 +1,10 @@
 class DataList
+  attr_reader :data, :selected, :column_names
     def initialize(data)
       self.data = data
       @selected = []
-    end
-  
+      @column_names = get_names
+      end
     def select(number)
       element = @data[number]
       if element && !@selected.include?(element.id)
@@ -20,10 +21,15 @@ class DataList
       DataTable.new(data)
     end
   
-    protected
+
   
     attr_reader :data
     attr_accessor :selected
+
+  def set_data(new_data)
+    raise ArgumentError, "Объект должен являться массивом" unless new_data.is_a?(Array)
+    self.data = new_data
+  end
   
     def data=(new_data)
       raise ArgumentError, "Данные должны быть массивом" unless new_data.is_a?(Array)

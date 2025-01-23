@@ -1,12 +1,34 @@
 require_relative 'data_list'
 require_relative 'data_table'
 class DataListStudentShort < DataList
+  attr_accessor :count, :offset
+
+  def initialize(data,offset = 0)
+    super(data)
+    @offset = offset
+    @observers = []
+  end
+
+  def add_observer(observer)
+    @observers << observer
+  end
+
+  def remove_observer(observer)
+    @observers.delete(observer)
+  end
+
+  def notify
+    @observers.each do |observer|
+      observer.set_table_params(column_names, @count)
+      observer.set_table_data(get_objects_array)
+    end
+  end
   def get_names
     ["№", "full_name", "git", "contact"]
   end
   def get_objects_array
-    @data.each_with_index.map do |obj, index|
-      [index + 1, obj.initials, obj.github, obj.contact]
+    data.map.with_index(1) do |object, index|
+      [index + @offset, object.initials, object.github, object.contact]
     end
   end
 end

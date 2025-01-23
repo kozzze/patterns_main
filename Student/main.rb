@@ -10,6 +10,7 @@ require_relative './student_list/student_list_yaml.rb'
 require_relative './student_list/interface.rb'
 require_relative './view/student_list_view'
 require_relative './db/student_list_db'
+require_relative './controller/student_list_controller'
 
 
  #student3 = Student.new(lastname: "Сидоров", firstname: "Сидор", surname: "Сидорович", birth_date: "10-12-2002")
@@ -137,10 +138,18 @@ require_relative './db/student_list_db'
 # puts "ямл: Загруженные студенты:"
 # students_list.students.each { |student| puts student }
 
+# if __FILE__ == $0
+#   app = FXApp.new
+#   StudentApp.new(app)
+#   app.create
+#   app.run
+# end
+
 if __FILE__ == $0
   app = FXApp.new
-  StudentApp.new(app)
+  view = StudentsListView.new(app)
   app.create
   app.run
 end
+
 

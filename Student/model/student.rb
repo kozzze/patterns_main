@@ -123,11 +123,9 @@ class Student < Person
   end
 
   def contact
-    contact_info = []
-    contact_info << "Телефон: #{phone}" if phone
-    contact_info << "Telegram: #{telegram}" if telegram
-    contact_info << "Email: #{email}" if email
-    contact_info.join(' ; ')
+    return "Телефон: #{phone}" if phone
+    return "Почта: #{email}" if email
+    return "Телеграм: #{telegram}" if telegram
   end
 
   def initials
